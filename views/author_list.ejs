@@ -1,0 +1,12 @@
+<h1><%=title%></h1>
+<% if(author_list.length){ %>
+    <ul>
+        <% for(let author of author_list){ %>
+            <li>
+                <a href="<%=author.url%>"><%=author.name%> | <%=author.date_of_birth%> - <%=author.date_of_death%></a>
+            </li>
+        <% } %>
+    </ul>
+<% } else { %>
+    <p>There are no authors.</p>
+<% } %>

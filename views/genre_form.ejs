@@ -1,0 +1,16 @@
+<h1><%=title%></h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Genre</label>
+        <input type="text" id="name" class="form-control" name="name" placeholder="Fantasy, Poetry, etc." required value="<%= !genre ? '' : genre.name %>">
+        <% console.log(genre) %>
+        <button type="submit">Submit</button>
+    </div>
+</form>
+<% if(errors){%>
+    <ul>
+        <% for(let error of errors){ %>
+            <li><%= error.msg %></li>
+        <% } %>
+    </ul>
+<% } %>

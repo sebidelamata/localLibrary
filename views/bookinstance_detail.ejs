@@ -1,0 +1,27 @@
+<h1><%=bookinstance._id%></h1>
+<p>
+    Title:
+    <a href="<%=bookinstance.book.url%>"><%=bookinstance.book.title%></a>
+    <p>
+        Imprint: <%=bookinstance.imprint%>
+    </p> 
+    <p>
+        Status:
+        <% if(bookinstance.status == 'Available') {%>
+            <span class="text-success"><%=bookinstance.status%></span>
+        <% } else if(bookinstance.status == 'Maintenance'){ %>
+            <span class="text-danger"><%=bookinstance.status%></span>
+        <% } else { %>
+            <span class="text-warning"><%=bookinstance.status%></span>
+        <% } %>
+    </p>
+    <%  if(bookinstance.status !== 'Available'){%>
+        <p>Due back: <%=bookinstance.due_back%></p>
+    <% } %>
+</p>
+<p>
+    <a href="<%=bookinstance.url + '/delete' %>">Delete Copy of Book</a>
+</p>
+<p>
+    <a href="<%=bookinstance.url + '/update' %>">Update Copy of Book</a>
+</p>

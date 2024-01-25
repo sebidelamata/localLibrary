@@ -1,0 +1,25 @@
+<h1><%=title%></h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first-name" placeholder="First name (Christian)" name="first_name" required value="<%= !author ? '' : author.first_name%>">
+        <label for="first_name">Family Name:</label>
+        <input type="text" id="family-name" placeholder="Family name (Surname)" name="family_name" required value="<%= !author ? '' : author.family_name%>">
+    </div>
+    <div class="form-group">
+        <label for="date_of_birth">Date of Birth:</label>
+        <input type="date" name="date_of_birth" id="date-of-birth" value="<%= !author ? '' : author.date_of_birth%>">
+        <label for="date_of_death">Date of Death:</label>
+        <input type="date" name="date_of_death" id="date-of-death" value="<%= !author ? '' : author.date_of_death%>">
+        <button class="btn btn-primary" type="submit">
+            Submit
+        </button>
+    </div>
+    <% if(errors){%>
+        <ul>
+            <% for(error of errors){ %>
+                <li><%=error.msg%></li>
+            <% } %>
+        </ul>
+    <% } %>
+</form>

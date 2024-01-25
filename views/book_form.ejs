@@ -1,0 +1,57 @@
+<h1><%=title%></h1>
+<form method="POST">
+    <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" name="title" value="<%= !book ? '' : book.title %>">
+    </div>
+    <div class="form-group">
+        <label for="author">Author:</label>
+        <select name="author" id="author" required class="form-control" >
+            <option value="">--Please select an author--</option>
+            <% for(let author of authors){ %>
+                <% if(book){ %>
+                    <% if(author._id.toString() === book.author._id.toString()){%>
+                        <option value="<%=author._id%>" selected><%=author.name%></option>
+                    <% } else { %>
+                        <option value="<%=author._id%>"><%=author.name%></option>
+                    <% }%>
+                <% } else { %>
+                    <option value="<%=author._id%>"><%=author.name%></option>
+                <% } %>
+            <% } %>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="summary">Summary:</label>
+        <input type="text" placeholder="Summary" name="summary" value="<%=!book ? '' : book.summary %>" required>
+    </div>
+    <div class="form-group">
+        <label for="isbn">ISBN:</label>
+        <input type="text" placeholder="ISBN13" name="isbn" value="<%=!book ? '' : book.isbn %>" required>
+    </div>
+    <div class="form-group">
+        <label>Genre: </label>
+        <div>
+            <% for(let genre of genres){ %>
+                <div style="display: inline; padding-right:10px;">
+                    <% if(genre.checked){ %>
+                        <input type="checkbox" class="checkbox-input" name="genre" id="<%=genre._id%>" checked>
+                        <label for="<%=genre.id%>">&nbsp;<%=genre.name%></label>
+                        <button class="btn btn-primary" type="submit"></button>
+                    <% } else{ %>
+                        <input type="checkbox" name="genre" id="<%=genre._id%>" value="<%=genre._id%>">
+                        <label for="<%=genre._id%>">&nbsp;<%=genre.name%></label>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+    <% if(errors){ %>
+        <ul>
+            <% for(let error of errors){ %>
+                <li><%=error.msg%></li>
+            <% } %>
+        </ul>
+    <% } %>
+</form>
